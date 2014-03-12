@@ -1,0 +1,19 @@
+body{
+    padding-top: 50px;
+}
+
+.greyed{
+    color: grey;
+}
+
+.face{
+    background: url('solved.png') center center no-repeat;
+}
+
+.face_solved{
+    opacity: 0.3;
+}
+
+.face_solved:hover{
+    opacity: 1;
+}
