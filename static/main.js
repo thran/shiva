@@ -59,9 +59,8 @@ app.controller("Chat", function($scope, $http, $interval, Data){
     $interval($scope.load_chat, refresh * 1000);
 });
 
-app.controller("Faces", function($scope, $http, $interval, Data){
+app.controller("Faces", function($scope, $http, $interval, Data, $sce){
     $scope.data = Data;
-    $scope.solved = null;
     $scope.load_faces = function(){
         var sel = "";
         if ($scope.data.selected_face && $scope.data.selected_face.pk){
@@ -84,6 +83,11 @@ app.controller("Faces", function($scope, $http, $interval, Data){
             .success(function(data){
                 $scope.solved = data;
             });
+
+    };
+
+    $scope.trustSrc = function(src) {
+        return $sce.trustAsResourceUrl(src);
     };
 
     $scope.send_guess = function(){
