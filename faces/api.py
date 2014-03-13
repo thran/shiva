@@ -9,7 +9,7 @@ from shiva import settings
 
 class Faces(View):
     def get(self, request, selected_pk=None):
-        faces = Face.objects.all()
+        faces = Face.objects.all().order_by("photo")
         faces_list = []
         for f in faces:
             face = {}
