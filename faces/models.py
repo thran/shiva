@@ -57,7 +57,9 @@ def make_thumb(instance, **kwargs):
     size_thumb = 100
     size = 500
 
-    img = Image.open("." + instance.photo.url)
+    path_to_media = ".." if settings.ON_VIPER else "."
+
+    img = Image.open(path_to_media + instance.photo.url)
     size2 = 1. * size_thumb * max(img.size) / min(img.size)
     img.thumbnail((size2, size2), Image.ANTIALIAS)
     img = img.crop((
@@ -76,8 +78,8 @@ def make_thumb(instance, **kwargs):
     instance.save()
     post_save.connect(make_thumb, Face)
 
-    img = Image.open("." + instance.photo.url)
+    img = Image.open(path_to_media + instance.photo.url)
     img.thumbnail((size, size), Image.ANTIALIAS)
     img = img.transpose(Image.FLIP_LEFT_RIGHT)
-    img.save("." + instance.photo.url)
+    img.save(path_to_media + instance.photo.url)
 
