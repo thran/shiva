@@ -61,6 +61,7 @@ app.controller("Chat", function($scope, $http, $interval, Data){
 
 app.controller("Faces", function($scope, $http, $interval, Data){
     $scope.data = Data;
+    $scope.solved = null;
     $scope.load_faces = function(){
         var sel = "";
         if ($scope.data.selected_face && $scope.data.selected_face.pk){
