@@ -5,6 +5,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from PIL import Image
 import os
+from unidecode import unidecode
 from shiva import settings
 
 
@@ -29,10 +30,10 @@ class Face(models.Model):
         return 0 < self.guess_set.filter(correct=True).count()
 
     def guess_name(self, guess):
-        if self.name.lower() == guess.lower():
+        if unidecode(self.name.lower()) == unidecode(guess.lower()):
             return True
 
-        return guess.lower() in self.alternatives.lower().split(";")
+        return unidecode(guess.lower()) in unidecode(self.alternatives.lower()).split(";")
 
 
 class Guess(models.Model):
