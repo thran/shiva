@@ -21,10 +21,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '=_rz34@7zk#!*lvm%d@wsqzb79l9*ca1+_@s@&ujhem66bz2va'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+ON_VIPER = os.getenv('ON_VIPER', "False") == "True"
+DEBUG = os.getenv('DJANGO_DEBUG', "False") == "True"
+if not ON_VIPER:
+    DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['shiva.thran.cz']
 
 
 # Application definition
@@ -77,7 +79,10 @@ USE_TZ = True
 
 TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), '..', 'templates').replace('\\','/'),)
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+if ON_VIPER:
+    MEDIA_ROOT = os.path.join(BASE_DIR, '../media')
+else:
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, '../static')
 STATIC_URL = '/static/'
