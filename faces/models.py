@@ -68,6 +68,7 @@ def make_thumb(instance, **kwargs):
     ))
 
     url = os.path.join("faces", "small", instance.photo.name.split("/")[-1])
+    img = img.transpose(Image.FLIP_LEFT_RIGHT)
     img.save(os.path.join(settings.MEDIA_ROOT, url))
     instance.photo_thumb = url
 
@@ -77,5 +78,6 @@ def make_thumb(instance, **kwargs):
 
     img = Image.open("." + instance.photo.url)
     img.thumbnail((size, size), Image.ANTIALIAS)
+    img = img.transpose(Image.FLIP_LEFT_RIGHT)
     img.save("." + instance.photo.url)
 

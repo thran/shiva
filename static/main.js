@@ -1,5 +1,5 @@
 var app = angular.module('shiva', ["ngCookies"]);
-var refresh = 10;
+var refresh = 5;
 
 app.config(function($httpProvider){
         $httpProvider.defaults.xsrfCookieName = 'csrftoken';
