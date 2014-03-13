@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     url(r'^$', 'faces.views.home', name='home'),
 
     url(r'^api/get_faces/$', 'faces.api.get_faces', name='get_faces'),
+    url(r'^api/is_solved/$', 'faces.api.is_solved', name='is_solved'),
     url(r'^api/get_faces/(?P<selected_pk>\d+)$', 'faces.api.get_faces', name='get_faces'),
     url(r'^api/get_guesses/(?P<face_pk>\d+)$', 'faces.api.guess', name='get_guesses'),
     url(r'^api/put_guess/(?P<face_pk>\d+)$', 'faces.api.guess', name='put_guess'),

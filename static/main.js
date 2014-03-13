@@ -78,6 +78,11 @@ app.controller("Faces", function($scope, $http, $interval, Data){
                     }
                 }
             });
+
+        $http.get("/api/is_solved/")
+            .success(function(data){
+                $scope.solved = data;
+            });
     };
 
     $scope.send_guess = function(){
