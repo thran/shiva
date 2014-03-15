@@ -80,5 +80,5 @@ chat = Chats.as_view()
 
 def is_solved(request):
     if Face.objects.filter(guess__correct=True).count() == Face.objects.all().count():
-        return HttpResponse("//www.youtube.com/embed/pNxldKs-NcI")
+        return HttpResponse("//www.youtube.com/embed/sxwEbBx5v8Y")
     return HttpResponse("")
