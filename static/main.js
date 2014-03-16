@@ -105,6 +105,16 @@ app.controller("Faces", function($scope, $http, $interval, Data, $sce){
         $scope.guess = null
     };
 
+    $scope.get_solved_count = function(){
+        var count = 0;
+        for (var i in $scope.faces){
+            if ($scope.faces[i].solved){
+                count++;
+            }
+        }
+        return count;
+    };
+
     $scope.load_faces();
     $interval($scope.load_faces, refresh * 1000);
 });

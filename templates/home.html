@@ -41,6 +41,7 @@
                 <iframe width="100%" height="400px" ng-src="{{trustSrc(solved)}}" frameborder="0" allowfullscreen></iframe>
                 <hr/>
             </div>
+            <h3 class="text-right"><small>určeno {{ get_solved_count() }}/{{ faces.length }}</small></h3>
             <ul class="large-block-grid-5">
                 <li ng-repeat="f in faces"><face data="f"></face></li>
             </ul>
@@ -55,7 +56,7 @@
                             <form ng-show="!data.selected_face.solved" ng-submit="send_guess()">
                                 <div class="row collapse">
                                     <div class="small-10 columns">
-                                        <input class="small-8 columns " type="text" ng-model="guess" placeholder="Napiš, celé jméno..."/>
+                                        <input class="small-8 columns " type="text" ng-model="guess" placeholder="Napiš celé jméno..."/>
                                     </div>
                                     <div class="small-2 columns">
                                         <input class="button postfix" type="submit" value="OK" />
@@ -77,28 +78,32 @@
         </div>
 
         <div class="columns medium-4" ng-controller="Chat">
-            <div class="text-right"><a href="#" ng-click="logout()">{{ data.user }}</a></div>
-            <hr style="margin-top: 5px" />
-            <form ng-submit="send_msg()">
-                <div class="row collapse">
-                    <div class="small-10 columns">
-                        <input class="small-8 columns " type="text" ng-model="msg" placeholder="Tvoje zpáva..."/>
+            <div style="position: fixed">
+                <div class="text-right"><a href="#" ng-click="logout()">{{ data.user }}</a></div>
+                <hr style="margin-top: 5px" />
+                <p>Pro přístup ke zprávě je potřeba určit všechny osoby. <br/>
+                Nápady a postřehy můžete psát k jednotlivým fotkám (jako pokusy). <br/>
+                V případě technických problémů piště na <a href="mailto:thran@centrum.cz">thran@centrum.cz</a>.</p>
+                <hr />
+                <form ng-submit="send_msg()">
+                    <div class="row collapse">
+                        <div class="small-10 columns">
+                            <input class="small-8 columns " type="text" ng-model="msg" placeholder="Tvoje zpáva do chatu"/>
+                        </div>
+                        <div class="small-2 columns">
+                            <input class="button postfix" type="submit" value="Poslat" />
+                        </div>
                     </div>
-                    <div class="small-2 columns">
-                        <input class="button postfix" type="submit" value="Poslat" />
+                </form>
+                <div>
+                    <div style="margin-bottom: 5px" ng-class="{greyed: msg.who==data.user}"  ng-repeat="msg in chat">
+                        <strong>({{ msg.time }}) {{ msg.who }}:</strong> {{ msg.text }}
                     </div>
-                </div>
-                {{ guess }}
-            </form>
-            <div>
-                <div style="margin-bottom: 5px" ng-class="{greyed: msg.who==data.user}"  ng-repeat="msg in chat">
-                    <strong>({{ msg.time }}) {{ msg.who }}:</strong> {{ msg.text }}
                 </div>
             </div>
         </div>
 
     </div>
-    <hr/>
 </div>
 
 {% endverbatim %}

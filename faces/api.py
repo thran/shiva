@@ -57,7 +57,7 @@ guess = Guesses.as_view()
 
 class Chats(View):
     def get(self, request):
-        chat = Chat.objects.all().order_by("-time")[:50].values()
+        chat = Chat.objects.all().order_by("-time")[:100].values()
 
         for ch in chat:
             ch ["time"] = ch["time"].strftime("%H:%M:%S")
