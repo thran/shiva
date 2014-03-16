@@ -3,6 +3,6 @@ from faces.models import Face
 
 
 class FacesAdmin(admin.ModelAdmin):
-    pass
+    list_display = ("pk", "name", "alternatives", "hint")
 
 admin.site.register(Face, FacesAdmin)
