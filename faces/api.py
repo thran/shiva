@@ -1,4 +1,5 @@
 import datetime
+from django.db.models import Count
 from django.http import HttpResponse
 import json
 from django.shortcuts import get_object_or_404
@@ -79,6 +80,6 @@ chat = Chats.as_view()
 
 
 def is_solved(request):
-    if Face.objects.filter(guess__correct=True).count() == Face.objects.all().count():
+    if Face.objects.filter(guess__correct=True).annotate(Count('guess')).count() == Face.objects.all().count():
         return HttpResponse("//www.youtube.com/embed/sxwEbBx5v8Y")
     return HttpResponse("")
