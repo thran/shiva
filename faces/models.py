@@ -43,7 +43,7 @@ class Guess(models.Model):
     correct = models.BooleanField()
 
     def __unicode__(self):
-        return self.name
+        return self.text
 
 
 class Chat(models.Model):
