@@ -81,7 +81,7 @@ app.controller("Faces", function($scope, $http, $interval, Data, $sce){
 
         $http.get("/api/is_solved/")
             .success(function(data){
-                $scope.solved = data;
+                $scope.solved = $sce.trustAsHtml(data);
             });
 
     };
