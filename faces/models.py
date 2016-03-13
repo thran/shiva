@@ -1,5 +1,7 @@
 # coding=utf-8
 import uuid
+
+from constance import config
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -70,7 +72,8 @@ def make_thumb(instance, **kwargs):
     ))
 
     url = os.path.join("faces", "small", instance.photo.name.split("/")[-1])
-    img = img.transpose(Image.FLIP_LEFT_RIGHT)
+    if config.DISTORT:
+        img = img.transpose(Image.FLIP_LEFT_RIGHT)
     img.save(os.path.join(settings.MEDIA_ROOT, url))
     instance.photo_thumb = url
 
@@ -78,8 +81,9 @@ def make_thumb(instance, **kwargs):
     instance.save()
     post_save.connect(make_thumb, Face)
 
-    img = Image.open(path_to_media + instance.photo.url)
-    img.thumbnail((size, size), Image.ANTIALIAS)
-    img = img.transpose(Image.FLIP_LEFT_RIGHT)
-    img.save(path_to_media + instance.photo.url)
+    if config.DISTORT:
+        img = Image.open(path_to_media + instance.photo.url)
+        img.thumbnail((size, size), Image.ANTIALIAS)
+        img = img.transpose(Image.FLIP_LEFT_RIGHT)
+        img.save(path_to_media + instance.photo.url)
 

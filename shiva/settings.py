@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 Django settings for shiva project.
 
@@ -11,6 +12,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import dj_database_url
 import os
+from django.templatetags.static import static
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -38,7 +40,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'south',
+    'constance',
+    'constance.backends.database',
     'faces',
 )
 
@@ -90,3 +93,15 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+DEFAULT_REWARD = '''
+<img src="{}" />
+<h3>Štěstí</h3>
+'''
+DEFAULT_REWARD = DEFAULT_REWARD.format(static("gold_cube.jpg"))
+
+CONSTANCE_CONFIG = {
+    'DISTORT': (True, 'Převrácení a jiné úprvy obrázku'),
+    'REWARD': (DEFAULT_REWARD, "Odměna"),
+}
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'

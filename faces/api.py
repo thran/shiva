@@ -1,10 +1,11 @@
 # coding=utf-8
 import datetime
+
+from constance import config
 from django.db.models import Count
 from django.http import HttpResponse
 import json
 from django.shortcuts import get_object_or_404
-from django.templatetags.static import static
 from django.views.generic import View
 from faces.models import Face, Guess, Chat
 from shiva import settings
@@ -81,14 +82,7 @@ class Chats(View):
 chat = Chats.as_view()
 
 
-REWARD = '''
-<img src="{}" />
-<h3>Štěstí</h3>
-'''
-REWARD = REWARD.format(static("gold_cube.jpg"))
-
-
 def is_solved(request):
     if Face.objects.filter(guess__correct=True).annotate(Count('guess')).count() == Face.objects.all().count():
-        return HttpResponse(REWARD)
+        return HttpResponse(config.REWARD)
     return HttpResponse("")
