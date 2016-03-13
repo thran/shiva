@@ -88,7 +88,7 @@
         </div>
 
         <div class="columns medium-4" ng-controller="Chat">
-            <div style="position: fixed">
+            <div style="position: fixed; max-width: 310px">
                 <div class="text-right"><a href="#" ng-click="logout()">{{ data.user }}</a></div>
                 <hr style="margin-top: 5px" />
             {% endverbatim %}<p>{{ message | safe }}</p> {% verbatim %}
