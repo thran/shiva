@@ -1,7 +1,9 @@
-Django==1.6.2
+Django==1.7.11
 MySQL-python==1.2.5
 Pillow==2.3.0
 South==0.8.4
 Unidecode==0.04.14
 dj-database-url==0.2.2
 wsgiref==0.1.2
+django-constance==1.1.2
+django-picklefield==0.3.2
