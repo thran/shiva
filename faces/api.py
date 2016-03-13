@@ -13,7 +13,7 @@ from shiva import settings
 
 class Faces(View):
     def get(self, request, selected_pk=None):
-        faces = Face.objects.all().order_by("photo")
+        faces = Face.objects.filter(active=True).order_by("photo")
         faces_list = []
         for f in faces:
             face = {}
@@ -83,6 +83,7 @@ chat = Chats.as_view()
 
 
 def is_solved(request):
-    if Face.objects.filter(guess__correct=True).annotate(Count('guess')).count() == Face.objects.all().count():
+    solved = Face.objects.filter(guess__correct=True, active=True).annotate(Count('guess')).count()
+    if solved == Face.objects.filter(active=True).count() and solved > 0:
         return HttpResponse(config.REWARD)
     return HttpResponse("")

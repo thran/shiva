@@ -24,6 +24,7 @@ class Face(models.Model):
     hint = models.CharField(max_length=255, verbose_name=u"Nápověda", blank=True, null=True)
     photo = models.ImageField(upload_to=update_filename)
     photo_thumb = models.CharField(max_length=255, blank=True, null=True)
+    active = models.BooleanField(default=True)
 
     def __unicode__(self):
         return self.name
