@@ -91,9 +91,7 @@
             <div style="position: fixed">
                 <div class="text-right"><a href="#" ng-click="logout()">{{ data.user }}</a></div>
                 <hr style="margin-top: 5px" />
-                <p>Pro přístup ke zprávě je potřeba určit všechny osoby. <br/>
-                Nápady a postřehy můžete psát k jednotlivým fotkám (jako pokusy). <br/>
-                V případě technických problémů piště na <a href="mailto:thran@centrum.cz">thran@centrum.cz</a>.</p>
+            {% endverbatim %}<p>{{ message | safe }}</p> {% verbatim %}
                 <hr />
                 <form ng-submit="send_msg()">
                     <div class="row collapse">

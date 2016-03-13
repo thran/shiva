@@ -103,5 +103,6 @@ DEFAULT_REWARD = DEFAULT_REWARD.format(static("gold_cube.jpg"))
 CONSTANCE_CONFIG = {
     'DISTORT': (True, 'Převrácení a jiné úprvy obrázku'),
     'REWARD': (DEFAULT_REWARD, "Odměna"),
+    'INFO_TEXT': ("Pro přístup ke zprávě je potřeba určit všechny osoby. <br/> Nápady a postřehy můžete psát k jednotlivým fotkám (jako pokusy). <br/> V případě technických problémů piště na <a href='mailto:thran@centrum.cz'>thran@centrum.cz</a>.", "Info text nad konverzací")
 }
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
