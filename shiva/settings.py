@@ -106,3 +106,4 @@ CONSTANCE_CONFIG = {
     'INFO_TEXT': ("Pro přístup ke zprávě je potřeba určit všechny osoby. <br/> Nápady a postřehy můžete psát k jednotlivým fotkám (jako pokusy). <br/> V případě technických problémů piště na <a href='mailto:thran@centrum.cz'>thran@centrum.cz</a>.", "Info text nad konverzací")
 }
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+CONSTANCE_SUPERUSER_ONLY = False
